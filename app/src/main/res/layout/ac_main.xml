@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/toolbar_shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnStartDay"
+            style="@style/btn_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="115"
+            android:background="@drawable/button_animation"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:onClick="onStartDayClick"
+            android:text="@string/start_new_day"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnLastMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="200"
+            android:background="@drawable/button_animation"
+            android:elevation="@dimen/elevation"
+            android:gravity="center"
+            android:onClick="onTimeClick"
+            android:text="@string/last_meal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="200"
+            android:background="@drawable/tv_time_animation"
+            android:elevation="@dimen/elevation"
+            android:gravity="center"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/time"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tvDuties"
+            style="@style/ordinary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="100"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/elevation"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/duties" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTime2"
+            style="@style/time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="200"
+            android:background="@drawable/tv_time_animation"
+            android:elevation="@dimen/elevation"
+            android:gravity="center"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/time" />
+
+
+        <TextView
+            android:id="@+id/tvDuties2"
+            style="@style/ordinary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="100"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/elevation"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/duties" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTime3"
+            style="@style/time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="200"
+            android:background="@drawable/tv_time_animation"
+            android:elevation="@dimen/elevation"
+            android:gravity="center"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/time" />
+
+
+        <TextView
+            android:id="@+id/tvDuties3"
+            style="@style/ordinary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="100"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/elevation"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/duties" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTime4"
+            style="@style/time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="200"
+            android:background="@drawable/tv_time_animation"
+            android:elevation="@dimen/elevation"
+            android:gravity="center"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/time" />
+
+
+        <TextView
+            android:id="@+id/tvDuties4"
+            style="@style/ordinary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:layout_weight="100"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/elevation"
+            android:padding="@dimen/standart_padding"
+            android:text="@string/duties" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnNotify"
+        style="@style/time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/yellow"
+        android:onClick="onNotifyClick"
+        android:text="@string/notify"
+        android:visibility="gone" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/all_margin"
+        android:src="@drawable/ic_add_black_24dp"
+        android:onClick="onAddNewNotify"/>
+
+
+</LinearLayout>

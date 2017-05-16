@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#00BB88</color>
+    <color name="colorPrimary">#00D49B</color>
+    <color name="colorAccent">#d40039</color>
+    <color name="colorBackground">#fae5eb</color>
+    <color name="titleTextColor">#EED0A5</color>
+    <color name="watchColor">#b2ffe5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFF000</color>
+    <color name="darkYellow">#DEC11E</color>
+    <color name="paleYellow">#FFF44c</color>
+    <color name="shadow">#d6bb94</color>
+    <color name="shadow2">#00be8b</color>
+    <color name="textColor">#00956C</color>
+    <color name="notificatorShadow">#AB9576</color>
+    <color name="grey">#888888</color>
+    <color name="dkgrey">#777777</color>
+    <color name="verydkgrey">#141414</color>
+    <color name="darkPink">#940027</color>
+
+
+</resources>
