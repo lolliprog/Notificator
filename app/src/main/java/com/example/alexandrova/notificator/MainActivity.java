@@ -3,92 +3,114 @@ package com.example.alexandrova.notificator;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.alexandrova.notificator.dialog.AddNewNotificationDialog;
 import com.example.inquallity.notificator.R;
 
 import java.util.Calendar;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddNewNotificationDialog.OnNotificationSaveListener {
 
-    static private final int RESULT = 0;
+    private static final int RESULT = 0;
 
     private static final int NOTIFY_ID = 33;
 
-    private TextView mTvTime;
+    private static final int MAX_HOUR = 23;
 
-    private TextView mTvTimeTwo;
+    private static final int MAX_MINUTE = 59;
 
-    private TextView mTvTimeThree;
+    private static final int HOUR_STEP = 3;
 
-    private TextView mTvTimeFour;
+    private static final int MINUTES_STEP = 45;
 
-    public void onTimeClick(View view) {
+    private TextView mTime;
 
-        Intent intent = new Intent(MainActivity.this, TimePickerActivity.class);
-        startActivityForResult(intent, RESULT);
+    private TextView mTimeTwo;
 
+    private TextView mTimeThree;
+
+    private TextView mTimeFour;
+
+    private final TimePickerDialog.OnTimeSetListener mOnTimeSetCallback =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    changeTimeTable(hourOfDay, minute);
+                }
+            };
+
+    public void onLastMealClick(View view) {
+        final Calendar now = Calendar.getInstance();
+        final int hour = now.get(Calendar.HOUR_OF_DAY);
+        final int minute = now.get(Calendar.MINUTE);
+        final TimePickerDialog tpd = new TimePickerDialog(this, mOnTimeSetCallback, hour, minute, true);
+        tpd.show();
     }
 
     public void changeTimeTable(int hour, int minute) {
+        final String first = String.format(Locale.getDefault(), "%1$02d : %2$02d", hour, minute);
+        mTime.setText(first);
 
-        int minute2 = minute + 45;
-        int hour2 = hour + 3;
-        if (minute2 > 60) {
-            hour2++;
-            minute2 = minute2 - 60;
+        hour += HOUR_STEP;
+        minute += MINUTES_STEP;
+        if (hour > MAX_HOUR) {
+            hour -= 24;
         }
-        if (hour2 > 23) {
-            hour2 = hour2 - 24;
+        if (minute > MAX_MINUTE) {
+            hour++;
+            minute -= 60;
         }
-        mTvTimeTwo.setText(String.format("%02d", hour2) + " : " + String.format("%02d", minute2));
+        final String second = String.format(Locale.getDefault(), "%1$02d : %2$02d", hour, minute);
+        mTimeTwo.setText(second);
 
-        int minute3 = minute2 + 45;
-        int hour3 = hour2 + 3;
-        if (minute3 > 59) {
-            hour3++;
-            minute3 = minute3 - 60;
+        hour += HOUR_STEP;
+        minute += MINUTES_STEP;
+        if (hour > MAX_HOUR) {
+            hour -= 24;
         }
-        if (hour3 > 23) {
-            hour3 = hour3 - 24;
+        if (minute > MAX_MINUTE) {
+            hour++;
+            minute -= 60;
         }
-        mTvTimeThree.setText(String.format("%02d", hour3) + " : " + String.format("%02d", minute3));
+        final String third = String.format(Locale.getDefault(), "%1$02d : %2$02d", hour, minute);
+        mTimeThree.setText(third);
 
-        int minute4 = minute3 + 45;
-        int hour4 = hour3 + 3;
-        if (minute4 > 59) {
-            hour4++;
-            minute4 = minute4 - 60;
+        hour += HOUR_STEP;
+        minute += MINUTES_STEP;
+        if (hour > MAX_HOUR) {
+            hour -= 24;
         }
-        if (hour4 > 23) {
-            hour4 = hour4 - 24;
+        if (minute > MAX_MINUTE) {
+            hour++;
+            minute -= 60;
         }
-        mTvTimeFour.setText(String.format("%02d", hour4) + " : " + String.format("%02d", minute4));
+        final String fourth = String.format(Locale.getDefault(), "%1$02d : %2$02d", hour, minute);
+        mTimeFour.setText(fourth);
     }
 
     public void onStartDayClick(View view) {
-
-        Calendar now = Calendar.getInstance();
-
-        int hour = now.get(Calendar.HOUR_OF_DAY);
-        int minute = now.get(Calendar.MINUTE);
-        mTvTime.setText(String.format("%02d", hour) + " : " + String.format("%02d", minute));
-
+        final Calendar now = Calendar.getInstance();
+        final int hour = now.get(Calendar.HOUR_OF_DAY);
+        final int minute = now.get(Calendar.MINUTE);
         changeTimeTable(hour, minute);
-
     }
 
     public void showNotify() {
-
         Context context = getApplicationContext();
         Intent notificationIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -97,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
         Notification.Builder builder = new Notification.Builder(context);
 
         builder.setContentIntent(contentIntent)
-                .setSmallIcon(R.mipmap.ic_launcher_food)
-                .setLargeIcon(BitmapFactory.decodeResource(res, R.mipmap.ic_launcher_food))
+                .setSmallIcon(R.drawable.ic_food)
+                .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.ic_food))
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setTicker("Time to eat ))")
@@ -114,6 +136,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddNewNotify(View view) {
+        final AddNewNotificationDialog dialog = new AddNewNotificationDialog();
+        dialog.show(getFragmentManager(), AddNewNotificationDialog.class.getName());
+    }
+
+    @Override
+    public void onSave(@NonNull String time, @NonNull String text) {
+        Toast.makeText(this, "Selected time: " + time + " -> " + text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -121,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_main);
 
-        mTvTime = (TextView) findViewById(R.id.tvTime);
-        mTvTimeTwo = (TextView) findViewById(R.id.tvTime2);
-        mTvTimeThree = (TextView) findViewById(R.id.tvTime3);
-        mTvTimeFour = (TextView) findViewById(R.id.tvTime4);
+        mTime = (TextView) findViewById(R.id.tvTime);
+        mTimeTwo = (TextView) findViewById(R.id.tvTime2);
+        mTimeThree = (TextView) findViewById(R.id.tvTime3);
+        mTimeFour = (TextView) findViewById(R.id.tvTime4);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextAppearance(this, R.style.toolbar_text);
@@ -138,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 int minute = data.getIntExtra(TimePickerActivity.CHOOSEN_MINUTE, 10);
                 int hour = data.getIntExtra(TimePickerActivity.CHOOSEN_HOUR, 10);
-                mTvTime.setText(String.format("%02d", hour) + " : " + String.format("%02d", minute));
+                mTime.setText(String.format(Locale.getDefault(), "%1$02d : %2$02d", hour, minute));
                 changeTimeTable(hour, minute);
             } else {
-                mTvTime.setText("");
+                mTime.setText("");
             }
         }
     }

@@ -7,4 +7,7 @@
     <string name="start_new_day">START NEW DAY</string>
     <string name="last_meal">last meal</string>
     <string name="notify">notify</string>
+    <string name="enter_time">Enter time</string>
+    <string name="enter_notification">Enter notification</string>
+    <string name="cancel">Cancel</string>
 </resources>

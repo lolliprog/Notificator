@@ -1,6 +1,5 @@
 package com.example.alexandrova.notificator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,7 +34,6 @@ public class TimePickerActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
